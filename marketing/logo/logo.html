@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<title>remedyMatch</title>
+		<meta charset="utf-8"/>
+		<script src="https://github.com/processing/p5.js/releases/download/0.10.2/p5.min.js"></script>
+		<script type="text/javascript">
+			  /////////////////////////////////////////////////////////////////////
+			 ////////// DONT JUDGE ME!!! DAS IST EIN HACKATHON OKAY? :D //////////
+			/////////////////////////////////////////////////////////////////////
+			function waypointb(s) {
+				if(s < 236) {
+					return [s+0.15, (s + 287.85)];
+				}
+				else if(s < 596) {
+					var angle = (-(s - 236)/360 + 3/4)*PI;
+					// console.log(angle);
+					return [420+cos(angle)*260, 340+sin(angle)*260];
+				}
+			}
+
+			function waypointr(s) {
+				if(s < 146) {
+					return [s+118.44, (s + 349.56)];
+				}
+				else if(s < 596) {
+					var angle = (-(s - 146)/360 + 3/4)*PI;
+					// console.log(angle);
+					return [420+cos(angle)*220, 340+sin(angle)*220];
+				}
+			}
+
+			function waypointy(s) {
+				if(s < 56) {
+					return [s+236.72, (s + 411.28)];
+				}
+				else if(s < 596) {
+					var angle = (-(s - 56)/360 + 3/4)*PI;
+					// console.log(angle);
+					return [420+cos(angle)*180, 340+sin(angle)*180];
+				}
+			}
+
+			class Stripe {
+				constructor() {
+					this.s = 0;
+					this.diameter = 40;
+				}
+
+				draw() {
+					if(this.s < 595) {
+						this.s++;
+						noStroke();
+						fill(color('black'));
+						ellipse(...waypointb(this.s), this.diameter);
+						fill(color('red'));
+						ellipse(...waypointr(this.s), this.diameter);
+						fill(color('gold'));
+						ellipse(...waypointy(this.s), this.diameter);
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<script>
+			let stripe;
+			let img, writing;
+			let counter = 0;
+
+			function preload() {
+				img = loadImage('logo.png');
+				writing = loadImage('logo.jpg');
+			}
+
+			function setup() {
+				createCanvas(730, 730);
+				background(255);
+				// image(img,0,0);
+				stripe = new Stripe();		
+			}
+
+			function draw() {
+				if(stripe.s < 240) {
+					background(255);
+					// image(img,0,0);
+				}
+				if(stripe.s < 595) {
+					stripe.draw();
+					stripe.draw();
+					stripe.draw();
+					stripe.draw();
+					stripe.draw();
+				}
+				else {
+					counter++;
+					tint(255,10);
+					image(writing, 35, 295);
+					fill(0);
+					text("REMEDYMATCH", 35, 295)
+				}	
+			}
+		</script>
+	</body>
+</html>
