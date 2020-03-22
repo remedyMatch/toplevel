@@ -3,7 +3,7 @@
 	<head>
 		<title>remedyMatch</title>
 		<meta charset="utf-8"/>
-		<script src="https://github.com/processing/p5.js/releases/download/0.10.2/p5.min.js"></script>
+		<script src="p5.min.js"></script>
 		<script type="text/javascript">
 			  /////////////////////////////////////////////////////////////////////
 			 ////////// DONT JUDGE ME!!! DAS IST EIN HACKATHON OKAY? :D //////////
@@ -41,6 +41,10 @@
 				}
 			}
 
+			  /////////////////////////////////////////////////////////////////////
+			 ////////// DONT JUDGE ME!!! DAS IST EIN HACKATHON OKAY? :D //////////
+			/////////////////////////////////////////////////////////////////////
+
 			class Stripe {
 				constructor() {
 					this.s = 0;
@@ -70,8 +74,8 @@
 			let counter = 0;
 
 			function preload() {
-				img = loadImage('logo.png');
-				writing = loadImage('logo.jpg');
+				// img = loadImage('logo.png');
+				writing = loadImage('writing.jpg');
 			}
 
 			function setup() {
@@ -80,6 +84,10 @@
 				// image(img,0,0);
 				stripe = new Stripe();		
 			}
+
+			  /////////////////////////////////////////////////////////////////////
+			 ////////// DONT JUDGE ME!!! DAS IST EIN HACKATHON OKAY? :D //////////
+			/////////////////////////////////////////////////////////////////////
 
 			function draw() {
 				if(stripe.s < 240) {
@@ -97,8 +105,10 @@
 					counter++;
 					tint(255,10);
 					image(writing, 35, 295);
-					fill(0);
-					text("REMEDYMATCH", 35, 295)
+					// fill(0);
+					// textSize(40);
+					// textFont(inconsolata);
+					// text("REMEDYMATCH", 35, 295);
 				}	
 			}
 		</script>
