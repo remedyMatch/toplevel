@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<title>remedyMatch loading animation</title>
+		<meta charset="utf-8"/>
+		<script src="p5.min.js"></script>
+	</head>
+
+	<body>
+		<script>
+			let size = 600; // GRÖßE EINSTELLEN
+
+			let size_dots = size * 0.1;
+			let stripes = [];
+			let pos_logo = {x:size/2, y:size/2};
+
+			class Stripes {
+				constructor(color,radius,angle) {
+					this.color = color;
+					this.radius = radius;
+					this.pos = {x:pos_logo.x, y:pos_logo.y-radius};
+					this.angle = angle;
+					this.speed = 0;
+				}
+
+				draw() {
+					this.speed = sin(this.angle/2)*.03 + 0.015;
+					this.angle += this.speed;
+					if(this.angle > TWO_PI) {
+						this.angle -= TWO_PI;
+					}
+
+					this.pos.x = pos_logo.x - sin(this.angle) * this.radius;
+					this.pos.y = pos_logo.y - cos(this.angle) * this.radius;
+
+
+					fill(color(this.color));
+					ellipse(this.pos.x, this.pos.y, size_dots);
+					for(var i = -25; i < 25; i++) {
+						ellipse(pos_logo.x-sin(this.angle+HALF_PI/50*i)*this.radius, pos_logo.y-cos(this.angle+HALF_PI/50*i)*this.radius, size_dots);
+					}
+				}
+			}
+
+			function setup() {
+				createCanvas(size, size);
+				background(255);
+				noStroke();
+				stripes.push(new Stripes('black',size*8/20,0));
+				stripes.push(new Stripes('red',size*6/20,HALF_PI));
+				stripes.push(new Stripes('gold',size*4/20,PI));
+			}
+
+			function draw() {
+				background(255);
+				for(var stripe of stripes) {
+					stripe.draw();
+				}
+			}
+		</script>
+	</body>
+</html>
